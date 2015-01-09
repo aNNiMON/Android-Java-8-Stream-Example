@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Java 8 Stream Example</string>
+    <string name="go">Go</string>
+    <string name="distinct">Distinct</string>
+    <string name="sort">Sort</string>
+    <string name="info">Info</string>
+    <string name="done_format">Done. Elapsed time %1$f sec.</string>
+
+    <string-array name="actionNames">
+        <item>Filter 1 word</item>
+        <item>Filter 2 and more words</item>
+        <item>Filter N words</item>
+        <item>Get translate length</item>
+        <item>Filter N symbols</item>
+        <item>Is contains "ok"?</item>
+        <item>Add index</item>
+        <item>Skip first N rows</item>
+        <item>Limit N rows</item>
+        <item>Group by first character</item>
+        <item>10000 Random ints</item>
+    </string-array>
+
+    <string-array name="actionValues" translatable="false">
+        <item>filter 1</item>
+        <item>filter 2+</item>
+        <item>filter %N words</item>
+        <item>translate length</item>
+        <item>filter %N length</item>
+        <item>contains ok</item>
+        <item>add index</item>
+        <item>skip %N</item>
+        <item>limit %N</item>
+        <item>group</item>
+        <item>random</item>
+    </string-array>
+
+</resources>

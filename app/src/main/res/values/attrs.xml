@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PaperButton">
+        <attr name="pw_backgroundColor" format="color" />
+        <attr name="pw_focusColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="PaperSeekBar">
+        <attr name="pw_color" format="color" />
+    </declare-styleable>
+</resources>
