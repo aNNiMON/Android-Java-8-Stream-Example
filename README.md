@@ -1,6 +1,6 @@
 # Android Java 8 Stream API Example
 
-Demo app of using Java 8 features with [Retrolmabda](https://github.com/orfjackal/retrolambda) and [Lightweight-Stream-API](https://github.com/aNNiMON/Lightweight-Stream-API).
+Demo app of using Java 8 features with [Retrolambda](https://github.com/orfjackal/retrolambda) and [Lightweight-Stream-API](https://github.com/aNNiMON/Lightweight-Stream-API).
 
 Features:
  - [() -> lambda expression](app/src/main/java/com/annimon/java8streamexample/MainActivity.java#L46);
