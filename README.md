@@ -71,6 +71,8 @@ Features:
   
 Demo app: [Java8StreamExample.apk](http://annimon.com/ablogs/file325/Java8StreamExample.apk)
 
+Blog (Russian): [Java 8 в Android со Stream API и лямбдами](http://annimon.com/article/1176)
+
 Retrolambda: https://github.com/orfjackal/retrolambda
 
 Lightweight-Stream-API: https://github.com/aNNiMON/Lightweight-Stream-API
