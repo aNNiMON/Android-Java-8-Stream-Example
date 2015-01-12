@@ -3,7 +3,7 @@
 Demo app of using Java 8 features with [Retrolambda](https://github.com/orfjackal/retrolambda) and [Lightweight-Stream-API](https://github.com/aNNiMON/Lightweight-Stream-API).
 
 Features:
- - [() -> lambda expression](app/src/main/java/com/annimon/java8streamexample/MainActivity.java#L46);
+ - [() -> lambda expression](app/src/main/java/com/annimon/java8streamexample/MainActivity.java#L46)
 
    ```java
    findViewById(R.id.go).setOnClickListener(v -> {
@@ -15,25 +15,25 @@ Features:
    ```
 
 
- - [Method::references](app/src/main/java/com/annimon/java8streamexample/Word.java#L37);
+ - [Method::references](app/src/main/java/com/annimon/java8streamexample/Word.java#L37)
  
    ```java
    int cmp = Objects.compare(word, other.word, String::compareToIgnoreCase);
    ```
 
 
- - [Stream.API()](app/src/main/java/com/annimon/java8streamexample/Utils.java#L38);
+ - [Stream.API()](app/src/main/java/com/annimon/java8streamexample/Utils.java#L38)
  
    ```java
    return Stream.of(lines)
         .map(str -> str.split("\t"))
         .filter(arr -> arr.length == 2)
         .map(arr -> new Word(arr[0], arr[1]))
-        .collect(Collectors.toList(new Word[0]));
+        .collect(Collectors.toList());
    ```
 
 
- - [switch for "string"](app/src/main/java/com/annimon/java8streamexample/MainActivity.java#L82);
+ - [switch for "string"](app/src/main/java/com/annimon/java8streamexample/MainActivity.java#L82)
  
    ```java
   switch (action) {
@@ -65,6 +65,22 @@ Features:
   }
   ```
 
+- [Objects](app/src/main/java/com/annimon/java8streamexample/Word.java#L48) (from Java 7)
+
+  ```java
+  @Override
+  public boolean equals(Object o) {
+      // ...
+      final Word other = (Word) o;
+      return Objects.equals(translate, other.translate) &&
+             Objects.equals(word, other.word);
+  }
+
+  @Override
+  public int hashCode() {
+      return Objects.hash(word, translate);
+  }
+  ```
 
 
 ## Links
