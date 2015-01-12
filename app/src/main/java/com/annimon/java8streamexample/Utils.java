@@ -39,6 +39,6 @@ public final class Utils {
                 .map(str -> str.split("\t"))
                 .filter(arr -> arr.length == 2)
                 .map(arr -> new Word(arr[0], arr[1]))
-                .collect(Collectors.toList(new Word[0]));
+                .collect(Collectors.toList());
     }
 }
