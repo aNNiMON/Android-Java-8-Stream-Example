@@ -51,9 +51,7 @@ public final class Word implements Comparable<Word> {
 
     @Override
     public int hashCode() {
-        int result = word.hashCode();
-        result = 31 * result + translate.hashCode();
-        return result;
+        return Objects.hash(word, translate);
     }
 
     @Override
