@@ -3,7 +3,7 @@
 Demo app of using Java 8 features with [Retrolambda](https://github.com/orfjackal/retrolambda) and [Lightweight-Stream-API](https://github.com/aNNiMON/Lightweight-Stream-API).
 
 Features:
- - [() -> lambda expression](app/src/main/java/com/annimon/java8streamexample/MainActivity.java#L46)
+ - [() -> lambda expression](app/src/main/java/com/annimon/java8streamexample/MainActivity.java#L46-L51)
 
    ```java
    findViewById(R.id.go).setOnClickListener(v -> {
@@ -22,7 +22,7 @@ Features:
    ```
 
 
- - [Stream.API()](app/src/main/java/com/annimon/java8streamexample/Utils.java#L38)
+ - [Stream.API()](app/src/main/java/com/annimon/java8streamexample/Utils.java#L37-L41)
  
    ```java
    return Stream.of(lines)
@@ -49,10 +49,10 @@ Features:
   }
   ```
 
-- [try(with-resources) {}](app/src/main/java/com/annimon/java8streamexample/Utils.java#L27)
+- [try(with-resources) {}](app/src/main/java/com/annimon/java8streamexample/Utils.java#L28)
 
   ```java
-  final List<String> lines = new LinkedList<>();
+  final List<String> lines = new ArrayList<>();
   try (final InputStream is = context.getAssets().open("words.txt");
        final InputStreamReader isr = new InputStreamReader(is, "UTF-8");
        final BufferedReader reader = new BufferedReader(isr)) {
@@ -60,8 +60,6 @@ Features:
       while ( (line = reader.readLine()) != null ) {
           lines.add(line);
       }
-  } catch (IOException e) {
-      Log.e("Java 8 Example", "Utils.readWords", e);
   }
   ```
 
@@ -80,6 +78,17 @@ Features:
   public int hashCode() {
       return Objects.hash(word, translate);
   }
+  ```
+  
+- ~~try {~~ [Exceptional](app/src/main/java/com/annimon/java8streamexample/Utils.java#L26-L43) ~~} catch~~ (functional try/catch)
+
+  ```java
+  return Exceptional.of(() -> {
+      final InputStream is = context.getAssets().open("words.txt");
+      // ... operations which throws Exception ...
+      return lines;
+  }).ifException(e -> Log.e("Java 8 Example", "Utils.readWords", e))
+    .getOrElse(new ArrayList<>());
   ```
 
 
