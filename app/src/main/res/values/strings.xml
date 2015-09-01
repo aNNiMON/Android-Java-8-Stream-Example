@@ -19,6 +19,8 @@
         <item>Skip first N rows</item>
         <item>Limit N rows</item>
         <item>Group by first character</item>
+        <item>Group by first character 2</item>
+        <item>Sort by translate</item>
         <item>10000 Random ints</item>
     </string-array>
 
@@ -33,6 +35,8 @@
         <item>skip %N</item>
         <item>limit %N</item>
         <item>group</item>
+        <item>group by</item>
+        <item>sort by</item>
         <item>random</item>
     </string-array>
 

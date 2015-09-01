@@ -132,6 +132,15 @@ public final class MainActivity extends ActionBarActivity {
                                 .limit(5))
                         .map(w -> new Word(String.valueOf(w.getWord().charAt(0)), w.getWord()));
                 break;
+            case "group by":
+                stream = stream.groupBy(w -> w.getWord().charAt(0))
+                        .flatMap(entry -> Stream.of(entry.getValue())
+                                .map(w -> new Word(String.valueOf(entry.getKey()), w.getWord())))
+                        .sortBy(Word::getWord);
+                break;
+            case "sort by":
+                stream = stream.sortBy(Word::getTranslate);
+                break;
             case "random":
                 final Random rnd = new Random();
                 stream = Stream.ofRange(0, 10000)
