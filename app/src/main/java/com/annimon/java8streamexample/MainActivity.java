@@ -143,8 +143,9 @@ public final class MainActivity extends ActionBarActivity {
                 break;
             case "random":
                 final Random rnd = new Random();
-                stream = Stream.ofRange(0, 10000)
-                        .map(i -> String.valueOf(rnd.nextInt(100)))
+                stream = Stream.generate(() -> rnd.nextInt(100))
+                        .limit(10000)
+                        .map(String::valueOf)
                         .map(s -> new Word(s, ""));
                 break;
         }
