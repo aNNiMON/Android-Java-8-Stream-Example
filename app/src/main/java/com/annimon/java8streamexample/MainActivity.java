@@ -11,7 +11,6 @@ import android.widget.Toast;
 import com.annimon.stream.IntStream;
 import com.annimon.stream.RandomCompat;
 import com.annimon.stream.Stream;
-import java.util.Random;
 
 public final class MainActivity extends ActionBarActivity {
 
@@ -118,6 +117,10 @@ public final class MainActivity extends ActionBarActivity {
                 stream = IntStream.range(0, mAdapter.getCount())
                         .mapToObj(i -> String.format("%d. %s", i+1, mAdapter.getItem(i).getWord()))
                         .map(str -> new Word(str, ""));
+                break;
+            case "add index custom op":
+                stream = stream.custom(CustomOperators.index(1))
+                        .map(p -> new Word(String.format("%d. %s", p.getIndex(), p.getObject()), ""));
                 break;
             case "skip %N":
                 stream = stream.skip(filterValue);

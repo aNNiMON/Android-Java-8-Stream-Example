@@ -16,6 +16,7 @@
         <item>Filter N symbols</item>
         <item>Is contains "ok"?</item>
         <item>Add index</item>
+        <item>Add index with custom operator</item>
         <item>Skip first N rows</item>
         <item>Limit N rows</item>
         <item>Group by first character</item>
@@ -32,6 +33,7 @@
         <item>filter %N length</item>
         <item>contains ok</item>
         <item>add index</item>
+        <item>add index custom op</item>
         <item>skip %N</item>
         <item>limit %N</item>
         <item>group</item>
