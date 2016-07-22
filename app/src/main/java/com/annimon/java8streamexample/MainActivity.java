@@ -128,6 +128,14 @@ public final class MainActivity extends ActionBarActivity {
             case "limit %N":
                 stream = stream.limit(filterValue);
                 break;
+            case "drop while %N":
+                // Drop while word length < N
+                stream = stream.dropWhile(p -> p.getWord().length() < filterValue);
+                break;
+            case "take while %N":
+                // Take while word length < N
+                stream = stream.takeWhile(p -> p.getWord().length() < filterValue);
+                break;
             case "group":
                 // Show 5 words by each group
                 stream = IntStream.range('a', 'z'+1)
