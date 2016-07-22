@@ -21,6 +21,7 @@
         <item>Limit N rows</item>
         <item>Drop while length &lt; N</item>
         <item>Take while length &lt; N</item>
+        <item>Step by N</item>
         <item>Group by first character</item>
         <item>Group by first character 2</item>
         <item>Sort by translate</item>
@@ -40,6 +41,7 @@
         <item>limit %N</item>
         <item>drop while %N</item>
         <item>take while %N</item>
+        <item>sample %N</item>
         <item>group</item>
         <item>group by</item>
         <item>sort by</item>
