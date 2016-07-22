@@ -14,11 +14,11 @@ import com.annimon.stream.Stream;
 
 public final class MainActivity extends ActionBarActivity {
 
-    private Spinner mActionSpinner;
-    private SeekBar mSeekBar;
+    private Spinner actionSpinner;
+    private SeekBar seekBar;
 
-    private ListView mListView;
-    private WordAdapter mAdapter;
+    private ListView listView;
+    private WordAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,18 +26,18 @@ public final class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         // SeekBar for filtering
-        mSeekBar = (SeekBar) findViewById(R.id.filterSeekBar);
+        seekBar = (SeekBar) findViewById(R.id.filterSeekBar);
 
         // Main actions
         final String[] actions = getResources().getStringArray(R.array.actionValues);
-        mActionSpinner = (Spinner) findViewById(R.id.actionSpinner);
-        mActionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        actionSpinner = (Spinner) findViewById(R.id.actionSpinner);
+        actionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (actions[i].contains("%N")) {
-                    mSeekBar.setVisibility(View.VISIBLE);
+                    seekBar.setVisibility(View.VISIBLE);
                 } else {
-                    mSeekBar.setVisibility(View.GONE);
+                    seekBar.setVisibility(View.GONE);
                 }
             }
 
@@ -45,41 +45,41 @@ public final class MainActivity extends ActionBarActivity {
             public void onNothingSelected(AdapterView<?> adapterView) { }
         });
         findViewById(R.id.go).setOnClickListener(v -> {
-            final int index = mActionSpinner.getSelectedItemPosition();
+            final int index = actionSpinner.getSelectedItemPosition();
             if (index != Spinner.INVALID_POSITION) {
                 action(actions[index]);
             }
         });
 
         // List of words
-        mAdapter = new WordAdapter(this, Utils.readWords(this));
-        mListView = (ListView) findViewById(R.id.listView);
-        mListView.setAdapter(mAdapter);
+        adapter = new WordAdapter(this, Utils.readWords(this));
+        listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(adapter);
 
         // Other functionality
         findViewById(R.id.distinct).setOnClickListener(v -> {
-            Stream.of(mAdapter.getCurrentList())
+            Stream.of(adapter.getCurrentList())
                     .distinct()
-                    .collect(Utils.collectAdapter(mAdapter));
+                    .collect(Utils.collectAdapter(adapter));
         });
         findViewById(R.id.sort).setOnClickListener(v -> {
-            Stream.of(mAdapter.getCurrentList())
+            Stream.of(adapter.getCurrentList())
                     .sorted()
-                    .collect(Utils.collectAdapter(mAdapter));
+                    .collect(Utils.collectAdapter(adapter));
         });
         findViewById(R.id.info).setOnClickListener(v -> {
-            long all = mAdapter.getWords().size();
-            long list = mListView.getCount();
+            long all = adapter.getWords().size();
+            long list = listView.getCount();
             String text = String.format("%d items all\n%d items in list", all, list);
             Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
         });
     }
 
     private void action(String action) {
-        final int filterValue = mSeekBar.getProgress();
+        final int filterValue = seekBar.getProgress();
 
         final long time = System.currentTimeMillis();
-        Stream<Word> stream = Stream.of(mAdapter.getWords());
+        Stream<Word> stream = Stream.of(adapter.getWords());
         switch (action) {
             case "filter 1":
                 // Filter one word
@@ -114,8 +114,8 @@ public final class MainActivity extends ActionBarActivity {
                         });
                 break;
             case "add index":
-                stream = IntStream.range(0, mAdapter.getCount())
-                        .mapToObj(i -> String.format("%d. %s", i+1, mAdapter.getItem(i).getWord()))
+                stream = IntStream.range(0, adapter.getCount())
+                        .mapToObj(i -> String.format("%d. %s", i+1, adapter.getItem(i).getWord()))
                         .map(str -> new Word(str, ""));
                 break;
             case "add index custom op":
@@ -144,7 +144,7 @@ public final class MainActivity extends ActionBarActivity {
                 // Show 5 words by each group
                 stream = IntStream.range('a', 'z'+1)
                         .mapToObj(i -> String.valueOf((char) i))
-                        .flatMap(s -> Stream.of(mAdapter.getWords())
+                        .flatMap(s -> Stream.of(adapter.getWords())
                                 .filter(w -> w.getWord().startsWith(s))
                                 .limit(5))
                         .map(w -> new Word(String.valueOf(w.getWord().charAt(0)), w.getWord()));
@@ -165,8 +165,8 @@ public final class MainActivity extends ActionBarActivity {
                         .map(s -> new Word(s, ""));
                 break;
         }
-        stream.collect(Utils.collectAdapter(mAdapter));
-        mListView.invalidate();
+        stream.collect(Utils.collectAdapter(adapter));
+        listView.invalidate();
         String msg = getString(R.string.done_format, (System.currentTimeMillis() - time) / 1000f);
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }

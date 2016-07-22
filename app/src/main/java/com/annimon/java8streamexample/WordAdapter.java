@@ -12,13 +12,13 @@ import java.util.List;
 
 public final class WordAdapter extends BaseAdapter {
 
-    private final List<Word> mWords, mCurrentList;
-    private final LayoutInflater mInflater;
+    private final List<Word> words, currentList;
+    private final LayoutInflater inflater;
 
     public WordAdapter(Context context) {
-        mInflater = LayoutInflater.from(context);
-        mWords = new ArrayList<>();
-        mCurrentList = new ArrayList<>();
+        inflater = LayoutInflater.from(context);
+        words = new ArrayList<>();
+        currentList = new ArrayList<>();
     }
 
     public WordAdapter(Context context, List<Word> items) {
@@ -26,41 +26,41 @@ public final class WordAdapter extends BaseAdapter {
         // We need new copy of words for immutability
         Stream.of(items)
                 .map(Word::new)
-                .forEach(mWords::add);
-        mCurrentList.addAll(items);
+                .forEach(words::add);
+        currentList.addAll(items);
     }
 
     public List<Word> getWords() {
-        return new ArrayList<>(mWords);
+        return new ArrayList<>(words);
     }
 
     public List<Word> getCurrentList() {
-        return mCurrentList;
+        return currentList;
     }
 
     public void addAll(List<Word> words) {
-        mCurrentList.addAll(words);
+        currentList.addAll(words);
         notifyDataSetChanged();
     }
 
     public void add(Word word) {
-        mCurrentList.add(word);
+        currentList.add(word);
         notifyDataSetChanged();
     }
 
     public void clear() {
-        mCurrentList.clear();
+        currentList.clear();
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        return mCurrentList.size();
+        return currentList.size();
     }
 
     @Override
     public Word getItem(int position) {
-        return mCurrentList.get(position);
+        return currentList.get(position);
     }
 
     @Override
@@ -72,7 +72,7 @@ public final class WordAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.list_item_word, parent, false);
+            convertView = inflater.inflate(R.layout.list_item_word, parent, false);
             holder = new ViewHolder();
             holder.word = (TextView) convertView.findViewById(R.id.word);
             holder.translate = (TextView) convertView.findViewById(R.id.translate);
@@ -81,7 +81,7 @@ public final class WordAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        final Word word = mCurrentList.get(position);
+        final Word word = currentList.get(position);
         holder.word.setText(word.getWord());
         holder.translate.setText(word.getTranslate());
 
