@@ -8,6 +8,7 @@ import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Toast;
+import com.annimon.stream.IntStream;
 import com.annimon.stream.Stream;
 import java.util.Random;
 
@@ -113,8 +114,8 @@ public final class MainActivity extends ActionBarActivity {
                         });
                 break;
             case "add index":
-                stream = Stream.ofRange(0, mAdapter.getCount())
-                        .map(i -> String.format("%d. %s", i+1, mAdapter.getItem(i).getWord()))
+                stream = IntStream.range(0, mAdapter.getCount())
+                        .mapToObj(i -> String.format("%d. %s", i+1, mAdapter.getItem(i).getWord()))
                         .map(str -> new Word(str, ""));
                 break;
             case "skip %N":
@@ -125,8 +126,8 @@ public final class MainActivity extends ActionBarActivity {
                 break;
             case "group":
                 // Show 5 words by each group
-                stream = Stream.ofRange('a', 'z'+1)
-                        .map(i -> String.valueOf((char) i.shortValue()))
+                stream = IntStream.range('a', 'z'+1)
+                        .mapToObj(i -> String.valueOf((char) i))
                         .flatMap(s -> Stream.of(mAdapter.getWords())
                                 .filter(w -> w.getWord().startsWith(s))
                                 .limit(5))
