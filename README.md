@@ -3,7 +3,7 @@
 Demo app of using Java 8 features with [Retrolambda](https://github.com/orfjackal/retrolambda) and [Lightweight-Stream-API](https://github.com/aNNiMON/Lightweight-Stream-API).
 
 Features:
- - [() -> lambda expression](app/src/main/java/com/annimon/java8streamexample/MainActivity.java#L46-L51)
+ - [() -> lambda expression](app/src/main/java/com/annimon/java8streamexample/MainActivity.java#L47-L52)
 
    ```java
    findViewById(R.id.go).setOnClickListener(v -> {
@@ -33,7 +33,7 @@ Features:
    ```
 
 
- - [switch for "string"](app/src/main/java/com/annimon/java8streamexample/MainActivity.java#L82)
+ - [switch for "string"](app/src/main/java/com/annimon/java8streamexample/MainActivity.java#L83)
  
    ```java
   switch (action) {
