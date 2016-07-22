@@ -9,6 +9,7 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 import com.annimon.stream.IntStream;
+import com.annimon.stream.RandomCompat;
 import com.annimon.stream.Stream;
 import java.util.Random;
 
@@ -143,10 +144,9 @@ public final class MainActivity extends ActionBarActivity {
                 stream = stream.sortBy(Word::getTranslate);
                 break;
             case "random":
-                final Random rnd = new Random();
-                stream = Stream.generate(() -> rnd.nextInt(100))
+                stream = new RandomCompat().ints(0, 100)
                         .limit(10000)
-                        .map(String::valueOf)
+                        .mapToObj(String::valueOf)
                         .map(s -> new Word(s, ""));
                 break;
         }
