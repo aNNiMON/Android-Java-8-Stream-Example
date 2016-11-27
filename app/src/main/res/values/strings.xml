@@ -17,6 +17,7 @@
         <item>Is contains "ok"?</item>
         <item>Add index</item>
         <item>Add index with custom operator</item>
+        <item>Reverse</item>
         <item>Skip first N rows</item>
         <item>Limit N rows</item>
         <item>Drop while length &lt; N</item>
@@ -37,6 +38,7 @@
         <item>contains ok</item>
         <item>add index</item>
         <item>add index custom op</item>
+        <item>reverse</item>
         <item>skip %N</item>
         <item>limit %N</item>
         <item>drop while %N</item>

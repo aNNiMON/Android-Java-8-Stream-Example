@@ -8,6 +8,7 @@ import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Toast;
+import com.annimon.stream.IntPair;
 import com.annimon.stream.IntStream;
 import com.annimon.stream.RandomCompat;
 import com.annimon.stream.Stream;
@@ -137,6 +138,13 @@ public final class MainActivity extends AppCompatActivity {
                                         p.getFirst(),
                                         p.getSecond().getWord())
                         ));
+                break;
+
+            case "reverse":
+                stream = stream
+                        .indexed()
+                        .sortBy(p -> -p.getFirst())
+                        .map(IntPair::getSecond);
                 break;
 
             case "skip %N":
