@@ -26,6 +26,8 @@
         <item>Group by first character</item>
         <item>Group by first character 2</item>
         <item>Sort by translate</item>
+        <item>Sum translate length</item>
+        <item>Average translate length</item>
         <item>10000 Random ints</item>
     </string-array>
 
@@ -47,6 +49,8 @@
         <item>group</item>
         <item>group by</item>
         <item>sort by</item>
+        <item>sum translate length</item>
+        <item>average translate length</item>
         <item>random</item>
     </string-array>
 

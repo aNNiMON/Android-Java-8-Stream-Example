@@ -199,6 +199,19 @@ public final class MainActivity extends AppCompatActivity {
                         .mapToObj(String::valueOf)
                         .map(s -> new Word(s, ""));
                 break;
+
+            case "sum translate length":
+                int sum = stream.mapToInt(w -> w.getTranslate().length()).sum();
+                stream = Stream.of(new Word("Sum of translate words length", Integer.toString(sum)));
+                break;
+
+            case "average translate length":
+                Word average = stream.mapToDouble(w -> w.getTranslate().length())
+                        .average()
+                        .mapToObj(avg -> new Word("Average of translate words length", Double.toString(avg)))
+                        .orElse(new Word("Unable to calculate average", ""));
+                stream = Stream.of(average);
+                break;
         }
         stream.collect(Utils.collectAdapter(adapter));
         listView.invalidate();
