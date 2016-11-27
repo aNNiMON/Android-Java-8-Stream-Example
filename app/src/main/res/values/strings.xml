@@ -29,6 +29,7 @@
         <item>Sum translate length</item>
         <item>Average translate length</item>
         <item>10000 Random ints</item>
+        <item>10000 Random doubles</item>
     </string-array>
 
     <string-array name="actionValues" translatable="false">
@@ -51,7 +52,8 @@
         <item>sort by</item>
         <item>sum translate length</item>
         <item>average translate length</item>
-        <item>random</item>
+        <item>random ints</item>
+        <item>random doubles</item>
     </string-array>
 
 </resources>

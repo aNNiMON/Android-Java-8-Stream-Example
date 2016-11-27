@@ -193,10 +193,17 @@ public final class MainActivity extends AppCompatActivity {
                 stream = stream.sortBy(Word::getTranslate);
                 break;
 
-            case "random":
+            case "random ints":
                 stream = new RandomCompat().ints(0, 100)
                         .limit(10000)
                         .mapToObj(String::valueOf)
+                        .map(s -> new Word(s, ""));
+                break;
+
+            case "random doubles":
+                stream = new RandomCompat().doubles(0.100, 0.500)
+                        .limit(10000)
+                        .mapToObj(Double::toString)
                         .map(s -> new Word(s, ""));
                 break;
 
