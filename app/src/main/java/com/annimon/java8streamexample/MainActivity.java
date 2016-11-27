@@ -1,7 +1,7 @@
 package com.annimon.java8streamexample;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -11,8 +11,9 @@ import android.widget.Toast;
 import com.annimon.stream.IntStream;
 import com.annimon.stream.RandomCompat;
 import com.annimon.stream.Stream;
+import java.util.Locale;
 
-public final class MainActivity extends ActionBarActivity {
+public final class MainActivity extends AppCompatActivity {
 
     private Spinner actionSpinner;
     private SeekBar seekBar;
@@ -70,7 +71,7 @@ public final class MainActivity extends ActionBarActivity {
         findViewById(R.id.info).setOnClickListener(v -> {
             long all = adapter.getWords().size();
             long list = listView.getCount();
-            String text = String.format("%d items all\n%d items in list", all, list);
+            String text = String.format(Locale.getDefault(), "%d items all\n%d items in list", all, list);
             Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
         });
     }
@@ -81,28 +82,34 @@ public final class MainActivity extends ActionBarActivity {
         final long time = System.currentTimeMillis();
         Stream<Word> stream = Stream.of(adapter.getWords());
         switch (action) {
+
             case "filter 1":
                 // Filter one word
                 stream = stream.filter(p -> p.getWord().split(" ").length == 1);
                 break;
+
             case "filter 2+":
                 // Filter two and more words
                 stream = stream.filter(p -> p.getWord().split(" ").length >= 2);
                 break;
+
             case "filter %N words":
-                // Filter 1 .. 10 words
+                // Filter 1 .. N/10 words
                 final int words = (filterValue / 10 + 1);
                 stream = stream.filter(p -> p.getWord().split(" ").length == words);
                 break;
+
             case "translate length":
                 // Replace word by translate length
                 stream = stream.map(p ->
                         p.setWord( String.valueOf(p.getTranslate().length()) ));
                 break;
+
             case "filter %N length":
                 // Filter by word length
                 stream = stream.filter(p -> p.getWord().length() == filterValue);
                 break;
+
             case "contains ok":
                 // Set answer to translate row
                 stream = stream.map(p -> p.setTranslate(p.getWord().contains("ok") ? "yes" : "no"))
@@ -113,35 +120,50 @@ public final class MainActivity extends ActionBarActivity {
                             return (b2 ? 1 : -1);
                         });
                 break;
+
             case "add index":
-                stream = IntStream.range(0, adapter.getCount())
-                        .mapToObj(i -> String.format("%d. %s", i+1, adapter.getItem(i).getWord()))
-                        .map(str -> new Word(str, ""));
+                stream = stream.indexed()
+                        .map(p -> p.getSecond().setWord(
+                                String.format(Locale.getDefault(), "%d. %s",
+                                        p.getFirst(),
+                                        p.getSecond().getWord())
+                        ));
                 break;
+
             case "add index custom op":
                 stream = stream.custom(CustomOperators.index(1))
-                        .map(p -> new Word(String.format("%d. %s", p.getIndex(), p.getObject()), ""));
+                        .map(p -> p.getSecond().setWord(
+                                String.format(Locale.getDefault(), "%d. %s",
+                                        p.getFirst(),
+                                        p.getSecond().getWord())
+                        ));
                 break;
+
             case "skip %N":
                 stream = stream.skip(filterValue);
                 break;
+
             case "limit %N":
                 stream = stream.limit(filterValue);
                 break;
+
             case "drop while %N":
                 // Drop while word length < N
                 stream = stream.dropWhile(p -> p.getWord().length() < filterValue);
                 break;
+
             case "take while %N":
                 // Take while word length < N
                 stream = stream.takeWhile(p -> p.getWord().length() < filterValue);
                 break;
+
             case "sample %N":
                 // Step with N
                 if (filterValue >= 2) {
                     stream = stream.sample(filterValue);
                 }
                 break;
+
             case "group":
                 // Show 5 words by each group
                 stream = IntStream.range('a', 'z'+1)
@@ -151,15 +173,18 @@ public final class MainActivity extends ActionBarActivity {
                                 .limit(5))
                         .map(w -> new Word(String.valueOf(w.getWord().charAt(0)), w.getWord()));
                 break;
+
             case "group by":
                 stream = stream.groupBy(w -> w.getWord().charAt(0))
                         .flatMap(entry -> Stream.of(entry.getValue())
                                 .map(w -> new Word(String.valueOf(entry.getKey()), w.getWord())))
                         .sortBy(Word::getWord);
                 break;
+
             case "sort by":
                 stream = stream.sortBy(Word::getTranslate);
                 break;
+
             case "random":
                 stream = new RandomCompat().ints(0, 100)
                         .limit(10000)

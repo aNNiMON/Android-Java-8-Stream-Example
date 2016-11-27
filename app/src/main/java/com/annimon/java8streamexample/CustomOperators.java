@@ -1,5 +1,6 @@
 package com.annimon.java8streamexample;
 
+import com.annimon.stream.IntPair;
 import com.annimon.stream.Stream;
 import com.annimon.stream.function.Function;
 import java.util.Iterator;
