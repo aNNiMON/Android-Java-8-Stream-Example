@@ -12,8 +12,8 @@ repositories {
 }
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.3"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -21,10 +21,10 @@ android {
     }
     defaultConfig {
         applicationId "com.annimon.java8streamexample"
-        minSdkVersion 8
-        targetSdkVersion 23
-        versionCode 2
-        versionName "1.1.1"
+        minSdkVersion 9
+        targetSdkVersion 24
+        versionCode 3
+        versionName "1.1.4"
     }
     buildTypes {
         release {
@@ -36,6 +36,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.annimon:stream:1.1.1'
-    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.annimon:stream:1.1.4'
+    compile 'com.android.support:appcompat-v7:24.2.1'
 }
