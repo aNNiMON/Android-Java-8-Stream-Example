@@ -11,7 +11,7 @@ Features:
       if (index != Spinner.INVALID_POSITION) {
           action(actions[index]);
       }
-  });
+   });
    ```
 
 
@@ -35,7 +35,7 @@ Features:
 
  - [switch for "string"](app/src/main/java/com/annimon/java8streamexample/MainActivity.java#L85)
  
-   ```java
+  ```java
   switch (action) {
       case "filter 1":
           // Filter one word
