@@ -35,19 +35,19 @@ Features:
 
  - [switch for "string"](app/src/main/java/com/annimon/java8streamexample/MainActivity.java#L85)
  
-  ```java
-  switch (action) {
-      case "filter 1":
-          // Filter one word
-          stream = stream.filter(p -> p.getWord().split(" ").length == 1);
-          break;
-      case "filter 2+":
-          // Filter two and more words
-          stream = stream.filter(p -> p.getWord().split(" ").length >= 2);
-          break;
-      // ...
-  }
-  ```
+   ```java
+   switch (action) {
+       case "filter 1":
+           // Filter one word
+           stream = stream.filter(p -> p.getWord().split(" ").length == 1);
+           break;
+       case "filter 2+":
+           // Filter two and more words
+           stream = stream.filter(p -> p.getWord().split(" ").length >= 2);
+           break;
+       // ...
+   }
+   ```
 
 - [try(with-resources) {}](app/src/main/java/com/annimon/java8streamexample/Utils.java#L28)
 
